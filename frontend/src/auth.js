@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://api.german.mesto.students.nomorepartiesxyz.ru';
 
 const _checkResponse = (res) => {
   if (res.ok) {
@@ -38,12 +38,12 @@ export const authorize = (password, email) => {
     })
 };
 
-export const getContent = (token) => {
+export const getContent = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
+    credentials: 'include',
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
     }
   })
     .then(_checkResponse)
