@@ -80,7 +80,8 @@ class Api {
         .then(this._checkResponse);
     } else {
       return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-        method: 'PUT'
+        method: 'PUT',
+        credentials: 'include'
       })
         .then(this._checkResponse);
     }

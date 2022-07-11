@@ -12,7 +12,7 @@ module.exports.createCard = (req, res, next) => {
 module.exports.getCards = (req, res, next) => {
   Card.find({})
     .then((card) => {
-      res.send({ data: card });
+      res.send({ card });
     })
     .catch(next);
 };
@@ -33,7 +33,7 @@ module.exports.deleteCard = (req, res, next) => {
       return card;
     })
     .then((card) => {
-      res.send({ data: card });
+      res.send({ card });
     })
     .catch(next);
 };
@@ -48,7 +48,7 @@ module.exports.likeCard = (req, res, next) => {
         const error = new NotFoundError('Not found');
         throw error;
       }
-      res.send({ data: card });
+      res.send({ card });
     })
     .catch(next);
 };
@@ -64,7 +64,7 @@ module.exports.dislikeCard = (req, res, next) => {
         const error = new NotFoundError('Not found');
         throw error;
       }
-      res.send({ data: card });
+      res.send({ card });
     })
     .catch(next);
 };
