@@ -40,7 +40,7 @@ module.exports.createUser = (req, res, next) => {
 module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((user) => {
-      res.send({ user });
+      res.send(user);
     })
     .catch(next);
 };
@@ -51,20 +51,20 @@ module.exports.getUser = (req, res, next) => {
         const error = new NotFoundError('Запрашиваемый пользователь не найден');
         throw error;
       }
-      res.send({ user });
+      res.send(user);
     })
     .catch(next);
 };
 module.exports.getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
-      res.send({ user });
+      res.send(user);
     })
     .catch(next);
 };
 module.exports.updateUser = (req, res, next) => {
   User.findByIdAndUpdate(req.user._id, req.body, { new: true, runValidators: true })
-    .then((user) => res.send({ user }))
+    .then((user) => res.send(user))
     .catch(next);
 };
 module.exports.updateUserAvatar = (req, res, next) => {
@@ -72,7 +72,7 @@ module.exports.updateUserAvatar = (req, res, next) => {
     new: true,
     runValidators: true,
   })
-    .then((user) => res.send({ user }))
+    .then((user) => res.send(user))
     .catch(next);
 };
 module.exports.login = (req, res, next) => {
