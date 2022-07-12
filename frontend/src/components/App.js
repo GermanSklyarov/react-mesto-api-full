@@ -42,7 +42,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, [])
+  }, [loggedIn])
 
   function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
@@ -63,6 +63,7 @@ function App() {
   function signOut() {
     auth.logout()
       .then(() => {
+        setLoggedIn(false);
         localStorage.removeItem('jwt');
         history.push('/sign-in');
       })
