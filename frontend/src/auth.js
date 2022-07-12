@@ -51,3 +51,13 @@ export const getContent = () => {
     .then(_checkResponse)
     .then(data => data)
 }
+
+export const logout = () => {
+  return fetch(`${BASE_URL}/logout`, {
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(_checkResponse);
+}

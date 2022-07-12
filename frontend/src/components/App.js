@@ -50,7 +50,7 @@ function App() {
       auth.getContent(jwt).then((res) => {
         if (res) {
           setLoggedIn(true);
-          setEmail(res.data.email);
+          setEmail(res.email);
           history.push('/');
         }
       })
@@ -61,8 +61,14 @@ function App() {
   }
 
   function signOut() {
-    localStorage.removeItem('jwt');
-    history.push('/sign-in');
+    auth.logout()
+      .then(() => {
+        localStorage.removeItem('jwt');
+        history.push('/sign-in');
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   function handleLogin() {
@@ -108,7 +114,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(id => id === currentUser._id);
     api.changeLikeCardStatus(card._id, isLiked).then((newCard) => {
       setCards((cards) => cards.map((c) => c._id === card._id ? newCard : c));
     })
